@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		045B3A4C1C20727400F9FC6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4B1C20727400F9FC6B /* main.m */; };
 		045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4E1C20727400F9FC6B /* AppDelegate.m */; };
-		045B3A521C20727400F9FC6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A511C20727400F9FC6B /* ViewController.m */; };
 		045B3A551C20727400F9FC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A531C20727400F9FC6B /* Main.storyboard */; };
 		045B3A581C20727500F9FC6B /* NewsTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A561C20727500F9FC6B /* NewsTest.xcdatamodeld */; };
 		045B3A5A1C20727500F9FC6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A591C20727500F9FC6B /* Assets.xcassets */; };
 		045B3A5D1C20727500F9FC6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A5B1C20727500F9FC6B /* LaunchScreen.storyboard */; };
+		04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA51D1C216C15009C2BBC /* Downloader.m */; settings = {ASSET_TAGS = (); }; };
+		04CFA5221C218BE7009C2BBC /* NewsDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5211C218BE7009C2BBC /* NewsDataSourceViewController.m */; settings = {ASSET_TAGS = (); }; };
+		04CFA5261C218CF3009C2BBC /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5251C218CF3009C2BBC /* NewsTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		04CFA5291C219372009C2BBC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CFA5281C219372009C2BBC /* CoreData.framework */; };
+		04CFA52E1C21B89A009C2BBC /* Article+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA52B1C21B89A009C2BBC /* Article+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		04CFA52F1C21B89A009C2BBC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA52D1C21B89A009C2BBC /* Article.m */; settings = {ASSET_TAGS = (); }; };
+		04CFA5321C21CCD6009C2BBC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		D957862D4E5E3FCC5CAD9986 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A6EEAB03E0E9817F3144B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +28,24 @@
 		045B3A4B1C20727400F9FC6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		045B3A4D1C20727400F9FC6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		045B3A4E1C20727400F9FC6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		045B3A501C20727400F9FC6B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		045B3A511C20727400F9FC6B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		045B3A541C20727400F9FC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		045B3A571C20727500F9FC6B /* NewsTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsTest.xcdatamodel; sourceTree = "<group>"; };
 		045B3A591C20727500F9FC6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		045B3A5C1C20727500F9FC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		045B3A5E1C20727500F9FC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04CFA51C1C216C15009C2BBC /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Downloader.h; path = Manager/Downloader.h; sourceTree = "<group>"; };
+		04CFA51D1C216C15009C2BBC /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Downloader.m; path = Manager/Downloader.m; sourceTree = "<group>"; };
+		04CFA5201C218BE7009C2BBC /* NewsDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSourceViewController.h; path = Controllers/NewsDataSourceViewController.h; sourceTree = "<group>"; };
+		04CFA5211C218BE7009C2BBC /* NewsDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsDataSourceViewController.m; path = Controllers/NewsDataSourceViewController.m; sourceTree = "<group>"; };
+		04CFA5241C218CF3009C2BBC /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = View/NewsTableViewCell.h; sourceTree = "<group>"; };
+		04CFA5251C218CF3009C2BBC /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = View/NewsTableViewCell.m; sourceTree = "<group>"; };
+		04CFA5281C219372009C2BBC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		04CFA52A1C21B89A009C2BBC /* Article+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Article+CoreDataProperties.h"; path = "Model/Article+CoreDataProperties.h"; sourceTree = "<group>"; };
+		04CFA52B1C21B89A009C2BBC /* Article+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Article+CoreDataProperties.m"; path = "Model/Article+CoreDataProperties.m"; sourceTree = "<group>"; };
+		04CFA52C1C21B89A009C2BBC /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Article.h; path = Model/Article.h; sourceTree = "<group>"; };
+		04CFA52D1C21B89A009C2BBC /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Article.m; path = Model/Article.m; sourceTree = "<group>"; };
+		04CFA5301C21CCD6009C2BBC /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataManager.h; path = Manager/CoreDataManager.h; sourceTree = "<group>"; };
+		04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataManager.m; path = Manager/CoreDataManager.m; sourceTree = "<group>"; };
 		34FCB54ADABC8AD3E09398FE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		56A6EEAB03E0E9817F3144B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DBB972C08FCAC03EC9829A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -39,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CFA5291C219372009C2BBC /* CoreData.framework in Frameworks */,
 				D957862D4E5E3FCC5CAD9986 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,10 +85,12 @@
 		045B3A491C20727400F9FC6B /* NewsTest */ = {
 			isa = PBXGroup;
 			children = (
+				04CFA51F1C216C1F009C2BBC /* Managers */,
+				04CFA50F1C215FDE009C2BBC /* Model */,
+				04CFA5271C218CF9009C2BBC /* View */,
+				04CFA5231C218BEE009C2BBC /* Controllers */,
 				045B3A4D1C20727400F9FC6B /* AppDelegate.h */,
 				045B3A4E1C20727400F9FC6B /* AppDelegate.m */,
-				045B3A501C20727400F9FC6B /* ViewController.h */,
-				045B3A511C20727400F9FC6B /* ViewController.m */,
 				045B3A531C20727400F9FC6B /* Main.storyboard */,
 				045B3A591C20727500F9FC6B /* Assets.xcassets */,
 				045B3A5B1C20727500F9FC6B /* LaunchScreen.storyboard */,
@@ -89,6 +109,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		04CFA50F1C215FDE009C2BBC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04CFA52A1C21B89A009C2BBC /* Article+CoreDataProperties.h */,
+				04CFA52B1C21B89A009C2BBC /* Article+CoreDataProperties.m */,
+				04CFA52C1C21B89A009C2BBC /* Article.h */,
+				04CFA52D1C21B89A009C2BBC /* Article.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		04CFA51F1C216C1F009C2BBC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				04CFA51C1C216C15009C2BBC /* Downloader.h */,
+				04CFA51D1C216C15009C2BBC /* Downloader.m */,
+				04CFA5301C21CCD6009C2BBC /* CoreDataManager.h */,
+				04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		04CFA5231C218BEE009C2BBC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04CFA5201C218BE7009C2BBC /* NewsDataSourceViewController.h */,
+				04CFA5211C218BE7009C2BBC /* NewsDataSourceViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		04CFA5271C218CF9009C2BBC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04CFA5241C218CF3009C2BBC /* NewsTableViewCell.h */,
+				04CFA5251C218CF3009C2BBC /* NewsTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		2B5F75E82D587FFCB7D99854 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +161,7 @@
 		6A01323BB27459AC706F029D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04CFA5281C219372009C2BBC /* CoreData.framework */,
 				56A6EEAB03E0E9817F3144B2 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -228,10 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				045B3A521C20727400F9FC6B /* ViewController.m in Sources */,
+				04CFA52F1C21B89A009C2BBC /* Article.m in Sources */,
 				045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */,
+				04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */,
+				04CFA5321C21CCD6009C2BBC /* CoreDataManager.m in Sources */,
 				045B3A581C20727500F9FC6B /* NewsTest.xcdatamodeld in Sources */,
 				045B3A4C1C20727400F9FC6B /* main.m in Sources */,
+				04CFA5261C218CF3009C2BBC /* NewsTableViewCell.m in Sources */,
+				04CFA52E1C21B89A009C2BBC /* Article+CoreDataProperties.m in Sources */,
+				04CFA5221C218BE7009C2BBC /* NewsDataSourceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NewsTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Superkachenya.NewsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -357,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NewsTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Superkachenya.NewsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
