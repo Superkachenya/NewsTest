@@ -3,11 +3,11 @@
     <entity name="Article" representedClassName="Article" syncable="YES">
         <attribute name="detailsURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="imageForSharing" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageForTableView" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageMedium" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageThumb" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-54" positionY="-1611" width="128" height="118"/>
+        <element name="Article" positionX="-54" positionY="-1611" width="128" height="120"/>
     </elements>
 </model>

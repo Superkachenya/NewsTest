@@ -7,6 +7,7 @@
 //
 
 #import "Downloader.h"
+#import "PersistenceController.h"
 
 static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/application/ios_test_task/articles";
 
@@ -42,8 +43,8 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
                                                                     inManagedObjectContext:context];
                 newArticle.id = [dictWithArticle objectForKey:@"id"];
                 newArticle.title = [dictWithArticle objectForKey:@"title"];
-                newArticle.imageForTableView = [dictWithArticle objectForKey:@"image_thumb"];
-                newArticle.imageForSharing = [dictWithArticle objectForKey:@"image_medium"];
+                newArticle.imageThumb = [dictWithArticle objectForKey:@"image_thumb"];
+                newArticle.imageMedium = [dictWithArticle objectForKey:@"image_medium"];
                 newArticle.detailsURL = [dictWithArticle objectForKey:@"content_url"];
                 NSLog(@"%@", newArticle.id);
             }

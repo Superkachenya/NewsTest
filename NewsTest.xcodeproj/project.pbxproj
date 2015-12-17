@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040AE71E1C22D4D00091BB88 /* PersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AE71D1C22D4D00091BB88 /* PersistenceController.m */; settings = {ASSET_TAGS = (); }; };
 		045B3A4C1C20727400F9FC6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4B1C20727400F9FC6B /* main.m */; };
 		045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4E1C20727400F9FC6B /* AppDelegate.m */; };
 		045B3A551C20727400F9FC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A531C20727400F9FC6B /* Main.storyboard */; };
@@ -19,11 +20,12 @@
 		04CFA5291C219372009C2BBC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CFA5281C219372009C2BBC /* CoreData.framework */; };
 		04CFA52E1C21B89A009C2BBC /* Article+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA52B1C21B89A009C2BBC /* Article+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		04CFA52F1C21B89A009C2BBC /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA52D1C21B89A009C2BBC /* Article.m */; settings = {ASSET_TAGS = (); }; };
-		04CFA5321C21CCD6009C2BBC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		D957862D4E5E3FCC5CAD9986 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A6EEAB03E0E9817F3144B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040AE71C1C22D4D00091BB88 /* PersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceController.h; path = Manager/PersistenceController.h; sourceTree = "<group>"; };
+		040AE71D1C22D4D00091BB88 /* PersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceController.m; path = Manager/PersistenceController.m; sourceTree = "<group>"; };
 		045B3A471C20727400F9FC6B /* NewsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B3A4B1C20727400F9FC6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		045B3A4D1C20727400F9FC6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,8 +46,6 @@
 		04CFA52B1C21B89A009C2BBC /* Article+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Article+CoreDataProperties.m"; path = "Model/Article+CoreDataProperties.m"; sourceTree = "<group>"; };
 		04CFA52C1C21B89A009C2BBC /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Article.h; path = Model/Article.h; sourceTree = "<group>"; };
 		04CFA52D1C21B89A009C2BBC /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Article.m; path = Model/Article.m; sourceTree = "<group>"; };
-		04CFA5301C21CCD6009C2BBC /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataManager.h; path = Manager/CoreDataManager.h; sourceTree = "<group>"; };
-		04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataManager.m; path = Manager/CoreDataManager.m; sourceTree = "<group>"; };
 		34FCB54ADABC8AD3E09398FE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		56A6EEAB03E0E9817F3144B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DBB972C08FCAC03EC9829A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		045B3A491C20727400F9FC6B /* NewsTest */ = {
 			isa = PBXGroup;
 			children = (
-				04CFA51F1C216C1F009C2BBC /* Managers */,
+				04CFA51F1C216C1F009C2BBC /* Tools */,
 				04CFA50F1C215FDE009C2BBC /* Model */,
 				04CFA5271C218CF9009C2BBC /* View */,
 				04CFA5231C218BEE009C2BBC /* Controllers */,
@@ -120,15 +120,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		04CFA51F1C216C1F009C2BBC /* Managers */ = {
+		04CFA51F1C216C1F009C2BBC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
 				04CFA51C1C216C15009C2BBC /* Downloader.h */,
 				04CFA51D1C216C15009C2BBC /* Downloader.m */,
-				04CFA5301C21CCD6009C2BBC /* CoreDataManager.h */,
-				04CFA5311C21CCD6009C2BBC /* CoreDataManager.m */,
+				040AE71C1C22D4D00091BB88 /* PersistenceController.h */,
+				040AE71D1C22D4D00091BB88 /* PersistenceController.m */,
 			);
-			name = Managers;
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		04CFA5231C218BEE009C2BBC /* Controllers */ = {
@@ -290,9 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CFA52F1C21B89A009C2BBC /* Article.m in Sources */,
+				040AE71E1C22D4D00091BB88 /* PersistenceController.m in Sources */,
 				045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */,
 				04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */,
-				04CFA5321C21CCD6009C2BBC /* CoreDataManager.m in Sources */,
 				045B3A581C20727500F9FC6B /* NewsTest.xcdatamodeld in Sources */,
 				045B3A4C1C20727400F9FC6B /* main.m in Sources */,
 				04CFA5261C218CF3009C2BBC /* NewsTableViewCell.m in Sources */,

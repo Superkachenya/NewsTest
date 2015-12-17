@@ -13,8 +13,8 @@
 
 @implementation Article (CoreDataProperties)
 
-@dynamic imageForTableView;
-@dynamic imageForSharing;
+@dynamic imageThumb;
+@dynamic imageMedium;
 @dynamic detailsURL;
 @dynamic title;
 @dynamic id;

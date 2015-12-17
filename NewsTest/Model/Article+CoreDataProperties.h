@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Article (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *imageForTableView;
-@property (nullable, nonatomic, retain) NSString *imageForSharing;
+@property (nullable, nonatomic, retain) NSString *imageThumb;
+@property (nullable, nonatomic, retain) NSString *imageMedium;
 @property (nullable, nonatomic, retain) NSString *detailsURL;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSNumber *id;

@@ -11,6 +11,8 @@
 #import "NewsTableViewCell.h"
 #import "Article.h"
 #import "Downloader.h"
+#import "PersistenceController.h"
+#import "AppDelegate.h"
 
 static NSString * const reuseIdentifier = @"newsCell";
 
@@ -23,22 +25,13 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 @implementation NewsDataSourceViewController
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    PersistenceController *context = [[PersistenceController alloc]initWithCallback:nil];
     [Downloader downloadArticles];
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
-    self.articles = [[managedObjectContext executeFetchRequest:fetchrequest error:nil] mutableCopy];
+   NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
+    self.articles = [[context.managedObjectContext executeFetchRequest:fetchrequest error:nil] mutableCopy];
     [self.tableView reloadData];
 
 }
@@ -60,7 +53,6 @@ static NSString * const reuseIdentifier = @"newsCell";
 {
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
     Article *newArticle = self.articles [indexPath.row];
-    //cell.imageOfArticle.image = [UIImage imageNamed:newArticle.imageForTableView];
     cell.titleOfArticle.text = newArticle.title;
     return cell;
 }
