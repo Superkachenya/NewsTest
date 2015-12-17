@@ -18,7 +18,7 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 @interface NewsDataSourceViewController ()
 
-@property (nonatomic, strong) NSArray *articles;
+@property (nonatomic, strong) NSFetchedResultsController *articles;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
@@ -28,11 +28,25 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     PersistenceController *context = [[PersistenceController alloc]initWithCallback:nil];
-    [Downloader downloadArticles];
-   NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
-    self.articles = [[context.managedObjectContext executeFetchRequest:fetchrequest error:nil] mutableCopy];
+    
+    //[Downloader downloadArticles];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    
+    self.articles = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                        managedObjectContext:context.managedObjectContext
+                                                          sectionNameKeyPath:nil
+                                                                   cacheName:@"Cache"];
     [self.tableView reloadData];
+    
+    [self.articles performFetch:nil];
 
 }
 
@@ -46,13 +60,17 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.articles count];
+    if ([[self.articles sections] count] > 0) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.articles sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    } else
+        return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
-    Article *newArticle = self.articles [indexPath.row];
+    Article *newArticle = [self.articles objectAtIndexPath:indexPath];;
     cell.titleOfArticle.text = newArticle.title;
     return cell;
 }
