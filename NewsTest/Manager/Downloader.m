@@ -32,7 +32,11 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
     
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        PersistenceController *context = [[PersistenceController alloc] initWithCallback:nil];;
+        
+        
+        PersistenceController *context = [[PersistenceController alloc] initWithCallback:nil];
+       
+        
         if ([responseObject isKindOfClass:[NSArray class]]) {
         NSArray *arrayWithArticles = [NSArray arrayWithArray:(NSArray *)responseObject];
         
@@ -46,7 +50,7 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
                 newArticle.imageThumb = [dictWithArticle objectForKey:@"image_thumb"];
                 newArticle.imageMedium = [dictWithArticle objectForKey:@"image_medium"];
                 newArticle.detailsURL = [dictWithArticle objectForKey:@"content_url"];
-                NSLog(@"%@", newArticle.title);
+               // NSLog(@"%@", newArticle.title);
             }
             [context save];
         }

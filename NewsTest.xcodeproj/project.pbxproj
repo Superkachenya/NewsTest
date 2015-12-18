@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040AE71E1C22D4D00091BB88 /* PersistenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AE71D1C22D4D00091BB88 /* PersistenceController.m */; settings = {ASSET_TAGS = (); }; };
+		040AE7241C241BAF0091BB88 /* ArticlesFetchedResController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040AE7231C241BAF0091BB88 /* ArticlesFetchedResController.m */; settings = {ASSET_TAGS = (); }; };
 		045B3A4C1C20727400F9FC6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4B1C20727400F9FC6B /* main.m */; };
 		045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A4E1C20727400F9FC6B /* AppDelegate.m */; };
 		045B3A551C20727400F9FC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A531C20727400F9FC6B /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		040AE71C1C22D4D00091BB88 /* PersistenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceController.h; path = Manager/PersistenceController.h; sourceTree = "<group>"; };
 		040AE71D1C22D4D00091BB88 /* PersistenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceController.m; path = Manager/PersistenceController.m; sourceTree = "<group>"; };
+		040AE7221C241BAF0091BB88 /* ArticlesFetchedResController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticlesFetchedResController.h; path = Manager/ArticlesFetchedResController.h; sourceTree = "<group>"; };
+		040AE7231C241BAF0091BB88 /* ArticlesFetchedResController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticlesFetchedResController.m; path = Manager/ArticlesFetchedResController.m; sourceTree = "<group>"; };
 		045B3A471C20727400F9FC6B /* NewsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B3A4B1C20727400F9FC6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		045B3A4D1C20727400F9FC6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,10 +126,12 @@
 		04CFA51F1C216C1F009C2BBC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				04CFA51C1C216C15009C2BBC /* Downloader.h */,
-				04CFA51D1C216C15009C2BBC /* Downloader.m */,
 				040AE71C1C22D4D00091BB88 /* PersistenceController.h */,
 				040AE71D1C22D4D00091BB88 /* PersistenceController.m */,
+				04CFA51C1C216C15009C2BBC /* Downloader.h */,
+				04CFA51D1C216C15009C2BBC /* Downloader.m */,
+				040AE7221C241BAF0091BB88 /* ArticlesFetchedResController.h */,
+				040AE7231C241BAF0091BB88 /* ArticlesFetchedResController.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CFA52F1C21B89A009C2BBC /* Article.m in Sources */,
+				040AE7241C241BAF0091BB88 /* ArticlesFetchedResController.m in Sources */,
 				040AE71E1C22D4D00091BB88 /* PersistenceController.m in Sources */,
 				045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */,
 				04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */,

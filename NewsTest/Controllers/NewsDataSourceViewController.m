@@ -7,18 +7,16 @@
 //
 
 #import "NewsDataSourceViewController.h"
-#import <CoreData/CoreData.h>
 #import "NewsTableViewCell.h"
 #import "Article.h"
+#import "ArticlesFetchedResController.h"
 #import "Downloader.h"
-#import "PersistenceController.h"
-#import "AppDelegate.h"
 
 static NSString * const reuseIdentifier = @"newsCell";
 
 @interface NewsDataSourceViewController ()
 
-@property (nonatomic, strong) NSFetchedResultsController *articles;
+@property (strong) ArticlesFetchedResController *articles;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
@@ -29,24 +27,14 @@ static NSString * const reuseIdentifier = @"newsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    PersistenceController *context = [[PersistenceController alloc]initWithCallback:nil];
-    
     //[Downloader downloadArticles];
+    self.articles = [[ArticlesFetchedResController alloc] initWithFetchRequestFromArticles];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    
-    self.articles = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                        managedObjectContext:context.managedObjectContext
-                                                          sectionNameKeyPath:nil
-                                                                   cacheName:@"Cache"];
+    NSError *error = nil;
+    [self.articles performFetch:&error];
+    NSLog(@"%@", self.articles);
     [self.tableView reloadData];
-    
-    [self.articles performFetch:nil];
+
 
 }
 
@@ -60,7 +48,7 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([[self.articles sections] count] > 0) {
+    if ([[self.articles sections] count]) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.articles sections] objectAtIndex:section];
         return [sectionInfo numberOfObjects];
     } else
