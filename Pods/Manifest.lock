@@ -14,11 +14,19 @@ PODS:
   - AFNetworking/Serialization (3.0.2)
   - AFNetworking/UIKit (3.0.2):
     - AFNetworking/NSURLSession
+  - DFImageManager (1.0.1):
+    - DFImageManager/Core (= 1.0.1)
+    - DFImageManager/UI (= 1.0.1)
+  - DFImageManager/Core (1.0.1)
+  - DFImageManager/UI (1.0.1):
+    - DFImageManager/Core
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - DFImageManager (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 2f30b7db399a405b12b24e049c654f108fc8c54d
+  DFImageManager: 970acb0cba8faab46c1474ac23da9dd51239b53e
 
 COCOAPODS: 0.39.0

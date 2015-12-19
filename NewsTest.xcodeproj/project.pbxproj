@@ -15,6 +15,7 @@
 		045B3A581C20727500F9FC6B /* NewsTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 045B3A561C20727500F9FC6B /* NewsTest.xcdatamodeld */; };
 		045B3A5A1C20727500F9FC6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A591C20727500F9FC6B /* Assets.xcassets */; };
 		045B3A5D1C20727500F9FC6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B3A5B1C20727500F9FC6B /* LaunchScreen.storyboard */; };
+		04B791961C25AD1F00E448CD /* ArticleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B791951C25AD1F00E448CD /* ArticleDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA51D1C216C15009C2BBC /* Downloader.m */; settings = {ASSET_TAGS = (); }; };
 		04CFA5221C218BE7009C2BBC /* NewsDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5211C218BE7009C2BBC /* NewsDataSourceViewController.m */; settings = {ASSET_TAGS = (); }; };
 		04CFA5261C218CF3009C2BBC /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFA5251C218CF3009C2BBC /* NewsTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -38,6 +39,8 @@
 		045B3A591C20727500F9FC6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		045B3A5C1C20727500F9FC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		045B3A5E1C20727500F9FC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B791941C25AD1F00E448CD /* ArticleDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleDetailsViewController.h; path = Controllers/ArticleDetailsViewController.h; sourceTree = "<group>"; };
+		04B791951C25AD1F00E448CD /* ArticleDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleDetailsViewController.m; path = Controllers/ArticleDetailsViewController.m; sourceTree = "<group>"; };
 		04CFA51C1C216C15009C2BBC /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Downloader.h; path = Manager/Downloader.h; sourceTree = "<group>"; };
 		04CFA51D1C216C15009C2BBC /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Downloader.m; path = Manager/Downloader.m; sourceTree = "<group>"; };
 		04CFA5201C218BE7009C2BBC /* NewsDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsDataSourceViewController.h; path = Controllers/NewsDataSourceViewController.h; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 			children = (
 				04CFA5201C218BE7009C2BBC /* NewsDataSourceViewController.h */,
 				04CFA5211C218BE7009C2BBC /* NewsDataSourceViewController.m */,
+				04B791941C25AD1F00E448CD /* ArticleDetailsViewController.h */,
+				04B791951C25AD1F00E448CD /* ArticleDetailsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				045B3A4F1C20727400F9FC6B /* AppDelegate.m in Sources */,
 				04CFA51E1C216C15009C2BBC /* Downloader.m in Sources */,
 				045B3A581C20727500F9FC6B /* NewsTest.xcdatamodeld in Sources */,
+				04B791961C25AD1F00E448CD /* ArticleDetailsViewController.m in Sources */,
 				045B3A4C1C20727400F9FC6B /* main.m in Sources */,
 				04CFA5261C218CF3009C2BBC /* NewsTableViewCell.m in Sources */,
 				04CFA52E1C21B89A009C2BBC /* Article+CoreDataProperties.m in Sources */,
