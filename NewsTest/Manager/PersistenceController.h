@@ -13,9 +13,11 @@ typedef void (^InitCallbackBlock)(void);
 
 @interface PersistenceController : NSObject
 
-@property (strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (strong, readonly) NSManagedObjectContext *mainContext;
+@property (strong, readonly) NSManagedObjectContext *workerContext;
 
-- (id)initWithCallback:(InitCallbackBlock)callback;
+
++ (instancetype)sharedPersistenceController;
 
 -(void)save;
 

@@ -14,9 +14,9 @@
 
 static NSString * const reuseIdentifier = @"newsCell";
 
-@interface NewsDataSourceViewController ()
+@interface NewsDataSourceViewController () <NSFetchedResultsControllerDelegate>
 
-@property (strong) ArticlesFetchedResController *articles;
+@property (strong) ArticlesFetchedResController *articlesController;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
@@ -27,15 +27,10 @@ static NSString * const reuseIdentifier = @"newsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //[Downloader downloadArticles];
-    self.articles = [[ArticlesFetchedResController alloc] initWithFetchRequestFromArticles];
     
-    NSError *error = nil;
-    [self.articles performFetch:&error];
-    NSLog(@"%@", self.articles);
-    [self.tableView reloadData];
-
-
+    [Downloader downloadArticles];
+    self.articlesController = [[ArticlesFetchedResController alloc] initWithFetchRequestFromArticles];
+    self.articlesController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,31 +41,41 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.articlesController.sections.count;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([[self.articles sections] count]) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.articles sections] objectAtIndex:section];
-        return [sectionInfo numberOfObjects];
-    } else
-        return 0;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.articlesController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
-    Article *newArticle = [self.articles objectAtIndexPath:indexPath];;
-    cell.titleOfArticle.text = newArticle.title;
+    Article *article = [self.articlesController objectAtIndexPath:indexPath];
+    cell.titleOfArticle.text = article.title;
     return cell;
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView reloadData];
 }
-*/
 
 @end

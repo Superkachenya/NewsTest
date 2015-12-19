@@ -10,7 +10,7 @@
 
 @interface AppDelegate ()
 
-@property (strong, readwrite)PersistenceController *persistenceController;
+@property (strong)PersistenceController *persistenceController;
 
 -(void)completeUserInterface;
 
@@ -21,10 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self setPersistenceController:[[PersistenceController alloc]initWithCallback:^{
-        [self completeUserInterface];
-    }]];
-    
+    self.persistenceController = [PersistenceController sharedWorkerContext];
 
     return YES;
 }
@@ -64,8 +61,7 @@
 
 -(void)completeUserInterface
 {
-    //Application code goes here
-
+   // [Downloader downloadArticles];
 }
 
 @end

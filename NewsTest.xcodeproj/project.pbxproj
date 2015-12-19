@@ -128,10 +128,10 @@
 			children = (
 				040AE71C1C22D4D00091BB88 /* PersistenceController.h */,
 				040AE71D1C22D4D00091BB88 /* PersistenceController.m */,
-				04CFA51C1C216C15009C2BBC /* Downloader.h */,
-				04CFA51D1C216C15009C2BBC /* Downloader.m */,
 				040AE7221C241BAF0091BB88 /* ArticlesFetchedResController.h */,
 				040AE7231C241BAF0091BB88 /* ArticlesFetchedResController.m */,
+				04CFA51C1C216C15009C2BBC /* Downloader.h */,
+				04CFA51D1C216C15009C2BBC /* Downloader.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";

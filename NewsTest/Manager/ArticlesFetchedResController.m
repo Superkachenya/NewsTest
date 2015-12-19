@@ -7,26 +7,35 @@
 //
 
 #import "ArticlesFetchedResController.h"
+#import "PersistenceController.h"
+
+@import UIKit;
+
 
 @implementation ArticlesFetchedResController
 
 
 -(id)initWithFetchRequestFromArticles
 {
+    
+    PersistenceController *persistenceController = [PersistenceController sharedPersistenceController];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    self = [super initWithFetchRequest:fetchRequest
+                  managedObjectContext:persistenceController.workerContext
+                    sectionNameKeyPath:nil
+                             cacheName:@"Cache"];
+    
     if (self){
-        PersistenceController *context = [[PersistenceController alloc] initWithCallback:nil];
+        NSError *error = nil;
+        [self performFetch:&error];
         
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
-            
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-            
-            [fetchRequest setSortDescriptors:sortDescriptors];
-        
-        self = [super initWithFetchRequest:fetchRequest
-               managedObjectContext:context.managedObjectContext
-                 sectionNameKeyPath:nil
-                          cacheName:@"Cache"];
     }
     return self;
     

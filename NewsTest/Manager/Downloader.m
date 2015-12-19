@@ -13,15 +13,7 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
 
 @implementation Downloader
 
-+(NSManagedObjectContext *)managedObjectContext
-{
-    NSManagedObjectContext *context;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
-    }
-    return context;
-}
+
 
 +(void)downloadArticles
 {
@@ -33,26 +25,49 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
-        
-        PersistenceController *context = [[PersistenceController alloc] initWithCallback:nil];
-       
-        
         if ([responseObject isKindOfClass:[NSArray class]]) {
-        NSArray *arrayWithArticles = [NSArray arrayWithArray:(NSArray *)responseObject];
-        
-            for (id newArticle in arrayWithArticles) {
-                NSDictionary *dictWithArticle = (NSDictionary *)newArticle;
             
-                Article *newArticle = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
-                                                                    inManagedObjectContext:context.managedObjectContext];
-                newArticle.id = [dictWithArticle objectForKey:@"id"];
-                newArticle.title = [dictWithArticle objectForKey:@"title"];
-                newArticle.imageThumb = [dictWithArticle objectForKey:@"image_thumb"];
-                newArticle.imageMedium = [dictWithArticle objectForKey:@"image_medium"];
-                newArticle.detailsURL = [dictWithArticle objectForKey:@"content_url"];
-               // NSLog(@"%@", newArticle.title);
+            PersistenceController *persistenceController = [PersistenceController sharedPersistenceController];
+            
+            
+            NSArray *arrayWithArticles = (NSArray *)responseObject;
+            
+            NSManagedObjectContext *context = persistenceController.workerContext;
+            
+            for (id newArticle in arrayWithArticles) {
+                if ([newArticle isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSDictionary *dictWithArticle = (NSDictionary *)newArticle;
+                    
+                    NSNumber *identifier = dictWithArticle[@"id"];
+                    
+                    __block Article *article = nil;
+                    
+                    NSFetchRequest *articleFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Article"];
+                    articleFetchRequest.fetchLimit = 1;
+                    articleFetchRequest.predicate = [NSPredicate predicateWithFormat:@"id == %@", identifier];
+                    
+                    [context performBlockAndWait:^{
+                        
+                        article = [context executeFetchRequest:articleFetchRequest error:nil].firstObject;
+                    }];
+                    
+                    if (article == nil) {
+                        article = [NSEntityDescription insertNewObjectForEntityForName:@"Article"
+                                                                inManagedObjectContext:context];
+                    }
+                    
+                    
+                    article.id = identifier;
+                    article.title = [dictWithArticle objectForKey:@"title"];
+                    article.imageThumb = [dictWithArticle objectForKey:@"image_thumb"];
+                    article.imageMedium = [dictWithArticle objectForKey:@"image_medium"];
+                    article.detailsURL = [dictWithArticle objectForKey:@"content_url"];
+                    // NSLog(@"%@", newArticle.title);
+                    
+                }
             }
-            [context save];
+            [persistenceController save];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -64,7 +79,7 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
     
     
     
-   
+    
 }
 
 @end
