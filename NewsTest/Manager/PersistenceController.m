@@ -105,12 +105,11 @@
 
 -(void)save
 {
-    if (![[self privateContext] hasChanges] /*&& ![[self mainContext] hasChanges]*/ && ![[self workerContext] hasChanges]) return;
+    if (![[self privateContext] hasChanges] && ![[self mainContext] hasChanges] && ![[self workerContext] hasChanges]) return;
     
-//    [self.mainContext performBlockAndWait:^{
-//        NSError *error = nil;
-//        
-//        NSAssert([self.mainContext save:&error], @"Failed to save main context: %@\n%@", [error localizedDescription], [error userInfo]);
+    [self.mainContext performBlockAndWait:^{
+        
+    }];
     
         [self.workerContext performBlockAndWait: ^{
             NSError *workerError = nil;

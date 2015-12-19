@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.persistenceController = [PersistenceController sharedWorkerContext];
+    self.persistenceController = [PersistenceController sharedPersistenceController];
 
     return YES;
 }
