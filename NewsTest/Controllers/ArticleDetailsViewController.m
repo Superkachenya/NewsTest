@@ -30,9 +30,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-
-
 - (IBAction)shareButton:(id)sender {
 }
 @end

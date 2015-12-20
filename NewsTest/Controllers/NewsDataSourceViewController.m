@@ -19,7 +19,7 @@ static NSString * const reuseIdentifier = @"newsCell";
 
 @property (strong) UIRefreshControl *refreshControl;
 @property (strong) ArticlesFetchedResController *articlesController;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (strong) IBOutlet UITableView *tableView;
 
 @end
 
@@ -34,9 +34,12 @@ static NSString * const reuseIdentifier = @"newsCell";
     self.articlesController = [[ArticlesFetchedResController alloc] initWithFetchRequestFromArticles];
     self.articlesController.delegate = self;
     
+    
+    //setUp pullToRefresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor purpleColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self
                             action:@selector(checkForUpdates)
                   forControlEvents:UIControlEventValueChanged];
@@ -48,46 +51,16 @@ static NSString * const reuseIdentifier = @"newsCell";
 }
 
 
-#pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.articlesController.sections.count;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.articlesController sections][section];
-    return [sectionInfo numberOfObjects];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
-    
-    Article *article = [self.articlesController objectAtIndexPath:indexPath];
-    NSURL *url = [NSURL URLWithString:article.imageThumb];
-    
-    cell.titleOfArticle.text = article.title;
-    [self downloadImageWithURL:url completionBlock:^ (BOOL succeeded, UIImage *image){
-        
-        if (succeeded) {
-            cell.imageOfArticle.image = image;
-            
-        }
-    }];
-    
-    return cell;
-}
-
-
+#pragma mark - updates checker
 
 -(void)checkForUpdates
 {
     [Downloader downloadArticles];
+    [self controllerDidChangeContent: self.articlesController];
+    [self.refreshControl endRefreshing];
     
 }
-
 
 
 #pragma mark - Image download method
@@ -132,5 +105,40 @@ static NSString * const reuseIdentifier = @"newsCell";
 {
     [self.tableView reloadData];
 }
+
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.articlesController.sections.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.articlesController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier forIndexPath:indexPath];
+    
+    Article *article = [self.articlesController objectAtIndexPath:indexPath];
+    NSURL *url = [NSURL URLWithString:article.imageThumb];
+    
+    cell.titleOfArticle.text = article.title;
+    [self downloadImageWithURL:url completionBlock:^ (BOOL succeeded, UIImage *image){
+        
+        if (succeeded) {
+            cell.imageOfArticle.image = image;
+            
+        }
+    }];
+    
+    return cell;
+}
+
 
 @end
