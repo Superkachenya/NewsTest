@@ -24,6 +24,12 @@
     NSURL *url = [NSURL URLWithString:self.articleURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webViewArticle loadRequest:request];
+    
+    
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,5 +37,16 @@
 }
 
 - (IBAction)shareButton:(id)sender {
+    
+    NSURL *url = [NSURL URLWithString:self.imageMedium];
+    UIActivityViewController *activityViewController =
+    [[UIActivityViewController alloc] initWithActivityItems:@[self.articleURL, url]
+                                      applicationActivities:nil];
+    //activityViewController.excludedActivityTypes = @[];
+
+    [self.navigationController presentViewController:activityViewController
+                                            animated:YES
+                                          completion:nil];
+    
 }
 @end

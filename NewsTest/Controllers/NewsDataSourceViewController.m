@@ -9,7 +9,6 @@
 #import "NewsDataSourceViewController.h"
 #import "NewsTableViewCell.h"
 #import "Article.h"
-#import "ArticlesFetchedResController.h"
 #import "Downloader.h"
 #import "ArticleDetailsViewController.h"
 
@@ -18,8 +17,6 @@ static NSString * const reuseIdentifier = @"newsCell";
 @interface NewsDataSourceViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong) UIRefreshControl *refreshControl;
-@property (strong) ArticlesFetchedResController *articlesController;
-@property (strong) IBOutlet UITableView *tableView;
 
 @end
 
@@ -57,7 +54,6 @@ static NSString * const reuseIdentifier = @"newsCell";
 -(void)checkForUpdates
 {
     [Downloader downloadArticles];
-    [self controllerDidChangeContent: self.articlesController];
     [self.refreshControl endRefreshing];
     
 }
@@ -140,5 +136,27 @@ static NSString * const reuseIdentifier = @"newsCell";
     return cell;
 }
 
+
+#pragma mark - UITableViewDelegate
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PersistenceController *persistenceLink = [PersistenceController sharedPersistenceController];
+    NSManagedObjectContext *context = persistenceLink.workerContext;
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [context deleteObject:[self.articlesController objectAtIndexPath:indexPath]];
+        
+        [persistenceLink save];
+        [self controllerDidChangeContent:self.articlesController];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 
 @end

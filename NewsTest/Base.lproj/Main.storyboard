@@ -60,6 +60,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="fAu-Gn-NmI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hCH-0X-Rpt"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -89,16 +90,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sM-6T-ohQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct3-gd-wHD">
-                                <rect key="frame" x="90" y="538" width="141" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwC-xH-NeM">
+                                <rect key="frame" x="96" y="526" width="113" height="34"/>
                                 <animations/>
                                 <state key="normal" title="Share"/>
                                 <connections>
-                                    <action selector="shareButton:" destination="06r-De-vvY" eventType="touchUpInside" id="wlP-xV-Q46"/>
+                                    <action selector="shareButton:" destination="06r-De-vvY" eventType="touchUpInside" id="S9o-jk-X2X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcK-BN-9c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214" y="1012"/>
+            <point key="canvasLocation" x="1221" y="1012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Y4p-gI-fCI">

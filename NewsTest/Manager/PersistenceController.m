@@ -108,6 +108,9 @@
     if (![[self privateContext] hasChanges] && ![[self mainContext] hasChanges] && ![[self workerContext] hasChanges]) return;
     
     [self.mainContext performBlockAndWait:^{
+        NSError *mainError = nil;
+        
+        NSAssert([self.mainContext save:&mainError], @"Error saving work context: %@\n%@", [mainError localizedDescription], [mainError userInfo]);
         
     }];
     

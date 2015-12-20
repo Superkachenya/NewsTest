@@ -74,12 +74,6 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
         NSLog(@"Error: %@", error);
         
     }];
-    
-    
-    
-    
-    
-    
 }
 
 @end

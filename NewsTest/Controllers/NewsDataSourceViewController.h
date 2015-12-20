@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArticlesFetchedResController.h"
 
-@interface NewsDataSourceViewController : UIViewController <UITableViewDataSource>
+
+@interface NewsDataSourceViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong) ArticlesFetchedResController *articlesController;
+@property (strong) IBOutlet UITableView *tableView;
+
 
 @end
