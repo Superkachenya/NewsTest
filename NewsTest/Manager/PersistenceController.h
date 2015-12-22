@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-typedef void (^InitCallbackBlock)(void);
-
 @interface PersistenceController : NSObject
 
 @property (strong, readonly) NSManagedObjectContext *mainContext;
@@ -19,6 +17,5 @@ typedef void (^InitCallbackBlock)(void);
 
 + (instancetype)sharedPersistenceController;
 
--(void)save;
 
 @end

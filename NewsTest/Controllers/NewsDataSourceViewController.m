@@ -11,6 +11,7 @@
 #import "Article.h"
 #import "Downloader.h"
 #import "ArticleDetailsViewController.h"
+#import "NSManagedObjectContext+Save.h"
 
 static NSString * const reuseIdentifier = @"newsCell";
 
@@ -87,6 +88,7 @@ static NSString * const reuseIdentifier = @"newsCell";
         ArticleDetailsViewController *details = [segue destinationViewController];
         NSIndexPath *indexPath =  [self.tableView indexPathForSelectedRow];
         Article *article = [self.articlesController objectAtIndexPath:indexPath];
+        details.articleTitle = article.title;
         details.articleURL = article.detailsURL;
         details.imageMedium = article.imageMedium;
     }
@@ -137,6 +139,8 @@ static NSString * const reuseIdentifier = @"newsCell";
 }
 
 
+
+
 #pragma mark - UITableViewDelegate
 
 
@@ -148,15 +152,14 @@ static NSString * const reuseIdentifier = @"newsCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersistenceController *persistenceLink = [PersistenceController sharedPersistenceController];
-    NSManagedObjectContext *context = persistenceLink.workerContext;
+    NSManagedObjectContext *context = persistenceLink.mainContext;
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [context deleteObject:[self.articlesController objectAtIndexPath:indexPath]];
         
-        [persistenceLink save];
-        [self controllerDidChangeContent:self.articlesController];
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [context save];
     }
 }
+
 
 @end

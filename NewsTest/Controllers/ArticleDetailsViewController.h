@@ -11,6 +11,7 @@
 @interface ArticleDetailsViewController : UIViewController
 
 
+@property (weak) NSString *articleTitle;
 @property (weak) NSString *articleURL;
 @property (weak) NSString *imageMedium;
 

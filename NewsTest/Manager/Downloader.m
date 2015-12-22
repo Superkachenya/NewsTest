@@ -8,6 +8,7 @@
 
 #import "Downloader.h"
 #import "PersistenceController.h"
+#import "NSManagedObjectContext+Save.h"
 
 static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/application/ios_test_task/articles";
 
@@ -67,7 +68,7 @@ static NSString * const BaseURLString = @"http://tgs.themindstudios.com/api/v1/a
                     
                 }
             }
-            [persistenceController save];
+            [context save];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

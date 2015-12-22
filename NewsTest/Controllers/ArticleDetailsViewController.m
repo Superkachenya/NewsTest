@@ -39,14 +39,18 @@
 - (IBAction)shareButton:(id)sender {
     
     NSURL *url = [NSURL URLWithString:self.imageMedium];
+  
     UIActivityViewController *activityViewController =
     [[UIActivityViewController alloc] initWithActivityItems:@[self.articleURL, url]
                                       applicationActivities:nil];
-    //activityViewController.excludedActivityTypes = @[];
+    //activityViewController.excludedActivityTypes = @[UIActivityTypeAddToReadingList];
 
     [self.navigationController presentViewController:activityViewController
                                             animated:YES
                                           completion:nil];
     
 }
+
+
+
 @end

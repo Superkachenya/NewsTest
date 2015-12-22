@@ -28,7 +28,7 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     self = [super initWithFetchRequest:fetchRequest
-                  managedObjectContext:persistenceController.workerContext
+                  managedObjectContext:persistenceController.mainContext
                     sectionNameKeyPath:nil
                              cacheName:@"Cache"];
     

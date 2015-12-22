@@ -12,10 +12,8 @@
 @interface PersistenceController()
 
 @property (strong, readwrite) NSManagedObjectContext *mainContext;
-@property (strong) NSManagedObjectContext *privateContext;
+@property (strong) NSManagedObjectContext *rootContext;
 @property (strong, readwrite) NSManagedObjectContext *workerContext;
-
-@property (copy) InitCallbackBlock initCallBack;
 
 -(void)initializeCoreData;
 
@@ -29,20 +27,23 @@
     static PersistenceController *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[PersistenceController alloc] initWithCallback:^{
-            NSLog(@"all works");
-        }];
+        sharedInstance = [PersistenceController new];
     });
     return sharedInstance;
 }
 
--(id)initWithCallback:(InitCallbackBlock)callback
+-(id)init
 {
-    if (!(self = [super init])) return nil;
+    self = [super init];
     
-    
-    [self setInitCallBack:callback];
-    [self initializeCoreData];
+    if (self) {
+        [self initializeCoreData];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(rootContextDidSave:)
+                                                     name:NSManagedObjectContextDidSaveNotification
+                                                   object:self.rootContext];
+    }
     
     return self;
 }
@@ -63,20 +64,19 @@
     //initializing contexts
     self.mainContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSMainQueueConcurrencyType];
     self.workerContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    self.privateContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    self.rootContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     
-    [self.privateContext setPersistentStoreCoordinator:coordinator];
+    [self.rootContext setPersistentStoreCoordinator:coordinator];
     
-    [self.mainContext setParentContext:self.privateContext];
-    [self.workerContext setParentContext:self.privateContext];
+    [self.mainContext setParentContext:self.rootContext];
+    [self.workerContext setParentContext:self.rootContext];
     
     /*
      To protect our main thread, we call -addPersistentStoreWithType: configuration: URL: options: error: in a dispatched background block.
      This will allow our -initializeCoreData method to return immediately, even if the persistent store needs to do some additional work
      */
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^ {
-        
-        NSPersistentStoreCoordinator *psc = [[self privateContext] persistentStoreCoordinator];
+    
+        NSPersistentStoreCoordinator *psc = [[self rootContext] persistentStoreCoordinator];
         NSMutableDictionary *options = [NSMutableDictionary dictionary];
         options[NSMigratePersistentStoresAutomaticallyOption] = @YES;
         options[NSInferMappingModelAutomaticallyOption] = @YES;
@@ -93,40 +93,16 @@
         /*
          However, the user interface needs to know when it is safe to access the persistence layer. Therefore we need to use the callback block that was given to us.
          */
-        
-        if (![self initCallBack]) return;
-        
-        dispatch_async(dispatch_get_main_queue(), ^ {
-            [self initCallBack]();
-        });
-    });
+    
     
 }
 
--(void)save
+
+- (void)rootContextDidSave:(NSNotification *)notification
 {
-    if (![[self privateContext] hasChanges] && ![[self mainContext] hasChanges] && ![[self workerContext] hasChanges]) return;
-    
-    [self.mainContext performBlockAndWait:^{
-        NSError *mainError = nil;
-        
-        NSAssert([self.mainContext save:&mainError], @"Error saving work context: %@\n%@", [mainError localizedDescription], [mainError userInfo]);
-        
+    [self.mainContext performBlock:^{
+        [self.mainContext mergeChangesFromContextDidSaveNotification:notification];
     }];
-    
-        [self.workerContext performBlockAndWait: ^{
-            NSError *workerError = nil;
-            
-            NSAssert([self.workerContext save:&workerError], @"Error saving work context: %@\n%@", [workerError localizedDescription], [workerError userInfo]);
-        }];
-        
-        [self.privateContext performBlock:^{
-            NSError *privateError = nil;
-            
-            NSAssert([self.privateContext save:&privateError], @"Error saving privat context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
-        }];
-        
-    //}];
 }
 
 
